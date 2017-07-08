@@ -5,7 +5,12 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
-
+import 'vue-event-calendar/dist/style.css'
+import vueEventCalendar from 'vue-event-calendar'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+Vue.use(ElementUI)
+Vue.use(vueEventCalendar, {locale: 'zh'})
 Vue.config.productionTip = false
 Vue.use(Vuex)
 

@@ -1,4 +1,4 @@
-x`<template>
+<template>
   <div id="app">
     <!-- 头部导航 -->
     <header class="header" :class="{ 'header-fixed' : headerFixed }">
@@ -15,11 +15,13 @@ x`<template>
       </el-row>
     </header>
     <div v-show="headerFixed" style="position: relative;height: 60px;width: 100%;"></div>
+<template>
+  <div>
+
   </div>
 </template>
 
 <script>
-
   import Vue from 'vue'
   import Element from 'element-ui'
   import 'element-ui/lib/theme-default/index.css'
@@ -48,6 +50,11 @@ x`<template>
           this.active = false
         }
       }
+import calendar from '../../self_modules/vue-fullcalendar/src/fullCalendar.vue'
+export default {
+  name: 'hello',
+  data () {
+    return {
     }
   }
 </script>

@@ -1,28 +1,35 @@
 <template>
   <div>
-    <full-calender :events="fcEvents"></full-calender>
+    <calendar :events="demoEvents"></calendar>
   </div>
 </template>
 
 <script>
-import calendar from '../../self_modules/vue-fullcalendar/src/fullCalendar.vue'
-export default {
-  name: 'hello',
-  data () {
-    return {
-      fcEvents: [
-        {
-          title: 'Sunny Out of Office',
-          start: '2017-07-15',
-          end: '2017-07-27'
+  import calendar from 'vue-event-calendar'
+  export default {
+    name: 'hello',
+    components: {
+      'calendar': calendar
+    },
+    data () {
+      return {
+        demoEvents: [{
+          date: '2016/12/15',
+          title: 'Foo',
+          desc: 'longlonglong description'
+        }, {
+          date: '2016/11/12',
+          title: 'Bar'
         }
-      ]
+        ]
+      }
+    },
+    methods: {
+      hello () {
+        console.log('heelo')
+      }
     }
-  },
-  components: {
-    'full-calender': calendar
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

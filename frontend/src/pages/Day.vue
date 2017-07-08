@@ -1,19 +1,21 @@
 <template>
   <div>
-    <full-calendar></full-calendar>
+    <day :year="year" :month="month" :day="day"></day>
   </div>
 </template>
 
 <script>
-import calendar from '../../self_modules/vue-fullcalendar/src/fullCalendar.vue'
+import Day from '../components/Day.vue'
 export default {
-  name: 'hello',
   data () {
     return {
+      year: '2015',
+      month: '23',
+      day: '23'
     }
   },
   components: {
-    'full-calendar': calendar
+    'day': Day
   }
 }
 </script>

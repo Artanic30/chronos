@@ -16,15 +16,9 @@
     <el-form-item label="事件内容">
       <el-input type="textarea" v-model="EventForm.Content"></el-input>
     </el-form-item>
-<<<<<<< HEAD
-    <el-form-item label="心情" v-if="type === 'past'">
-      <!--TODO: emotion component-->
-      <el-input v-model="EventForm.Emotion"></el-input>
-=======
     <el-form-item label="心情" v-if=" event_type === 'Past'">
       <!--TODO: emotion component-->
       <el-rate v-model="EventForm.Emotion"></el-rate>
->>>>>>> ncj
     </el-form-item>
     <el-form-item label="">
       <el-button @click="EventSubmit()">提交</el-button>
@@ -34,8 +28,6 @@
 <script>
   import axios from 'axios'
   export default {
-<<<<<<< HEAD
-=======
     props: {
       event_type: {
         default: 'Past'
@@ -43,24 +35,15 @@
       start_datetime: {},
       end_datetime: {}
     },
->>>>>>> ncj
     data () {
       return {
         EventForm: {
           Name: '',
-<<<<<<< HEAD
-          Type: '',
-          Content: '',
-          StartDatetime: '',
-          EndDatetime: '',
-          Emotion: '',
-=======
           Type: this.GetType,
           Content: '',
           StartDatetime: this.GetStartDatetime,
           EndDatetime: this.GetEndDatetime,
           Emotion: 0,
->>>>>>> ncj
           Place: ''
         },
         PlaceChoices: [
@@ -123,8 +106,6 @@
           }
         }.bind(this))
       }
-<<<<<<< HEAD
-=======
     },
     computed: {
       Authenticate () {
@@ -145,7 +126,6 @@
       GetEndDatetime () {
         return this.$props.end_datetime
       }
->>>>>>> ncj
     }
   }
 </script>

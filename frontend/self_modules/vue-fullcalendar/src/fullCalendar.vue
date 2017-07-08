@@ -22,10 +22,12 @@
       :week-names="weekNames" :first-day="firstDay"
       @eventclick="emitEventClick" @dayclick="emitDayClick"
       @moreclick="emitMoreClick">
+      <router-link to="/shit">
       <div slot="body-card">
         <slot name="fc-body-card">
         </slot>
       </div>
+      </router-link>
     </fc-body>
   </div>
 </template>

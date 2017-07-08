@@ -10,6 +10,11 @@ export default new Router({
       path: '/',
       name: 'Calendar',
       component: Calendar
+    },
+    {
+      path: '/day',
+      name: 'Day',
+      component: Calendar
     }
   ]
 })

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <full-calender :events="fcEvents"></full-calender>
+    <full-calendar :events="fcEvents"></full-calendar>
   </div>
 </template>
 
@@ -10,17 +10,11 @@ export default {
   name: 'hello',
   data () {
     return {
-      fcEvents: [
-        {
-          title: 'Sunny Out of Office',
-          start: '2017-07-15',
-          end: '2017-07-27'
-        }
-      ]
+      fcEvents: []
     }
   },
   components: {
-    'full-calender': calendar
+    'full-calendar': calendar
   }
 }
 </script>

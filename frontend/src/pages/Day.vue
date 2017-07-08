@@ -1,6 +1,7 @@
 <template>
   <div>
     <day></day>
+    <router-link :to="{ name: 'Day', params:{ year:'2017',month:'7',day:'8'}}">shit</router-link>
   </div>
 </template>
 

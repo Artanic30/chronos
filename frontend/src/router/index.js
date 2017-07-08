@@ -15,7 +15,7 @@ export default new Router({
       component: Calendar
     },
     {
-      path: '/day',
+      path: '/day/:year/:month/:day',
       name: 'Day',
       component: Day
     },

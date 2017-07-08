@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h1>{{ Year }}年</h1>
+    <h1>{{ Month }}月</h1>
+    <h1>{{ Day }}日</h1>
     <div v-for="Hour in HourList">
       <hour :Hour="Hour"></hour>
     </div>

@@ -4,7 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
-
+import fullCalendar from 'vue-fullcalendar'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+Vue.component('full-calendar', fullCalendar)
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

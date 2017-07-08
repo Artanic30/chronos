@@ -1,9 +1,8 @@
 <template>
   <div>
-    <full-calender :events="fcEvents"></full-calender>
+    <full-calender :events="fcEvents" @dayClick="alert('hello')"></full-calender>
   </div>
 </template>
-
 <script>
 import calendar from '../../self_modules/vue-fullcalendar/src/fullCalendar.vue'
 export default {
@@ -19,6 +18,7 @@ export default {
       ]
     }
   },
+
   components: {
     'full-calender': calendar
   }

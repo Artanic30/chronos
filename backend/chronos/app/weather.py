@@ -44,8 +44,11 @@ def get_weather_now():
             if weatherJSON['result']['status'] == 'ok':
                 wd = weatherJSON['result']
                 # wo -> weather objects
-                datetime
-                wo = Weather.objects.get(datetime=datetime.datetime.now().replace(minute=0))
+                wo = None
+                if datetime.datetime.now().minute >=30:
+                    wo = Weather.objects.get(datetime=datetime.datetime.now().replace(minute=0)+timedelta(hours=1))
+                elif datetime.datetime.now().minute <30:
+                    wo = Weather.objects.get(datetime=datetime.datetime.now().replace(minute=0))
                 wo.temperature = wd['temperature']
                 wo.skycon = wd['skycon']
                 wo.pm2point5 = wd['pm25']

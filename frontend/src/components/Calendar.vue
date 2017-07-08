@@ -1,23 +1,28 @@
 <template>
   <div>
-    <calendar :events="demoEvents"></calendar>
+    <strong v-for="dayIndex in week">{{ dayIndex }}</strong>
   </div>
 </template>
 
 <script>
-  import calendar from 'vue-event-calendar'
   export default {
-    name: 'hello',
-    components: {
-      'calendar': calendar
-    },
     data () {
       return {
+        week: [
+          '星期日',
+          '星期一',
+          '星期二',
+          '星期三',
+          '星期四',
+          '星期五',
+          '星期六'
+        ],
         demoEvents: [{
           date: '2016/12/15',
           title: 'Foo',
           desc: 'longlonglong description'
-        }, {
+        },
+        {
           date: '2016/11/12',
           title: 'Bar'
         }

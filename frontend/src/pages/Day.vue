@@ -10,7 +10,7 @@ export default {
   data () {
     return {
       year: '2015',
-      month: '23',
+      month: '3',
       day: '23'
     }
   },

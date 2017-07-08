@@ -1,13 +1,12 @@
 <template>
   <div>
-    <full-calendar></full-calendar>
+
   </div>
 </template>
 
 <script>
-import calendar from '../../self_modules/vue-fullcalendar/src/fullCalendar.vue'
+import calendar from '../components/Calendar.vue'
 export default {
-  name: 'hello',
   data () {
     return {
     }

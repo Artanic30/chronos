@@ -54,8 +54,11 @@
             })
           }
         }.bind(this))
-          .catch(function (error) {
-            console.log(error)
+          .catch(function () {
+            this.$notify.error({
+              'title': '错误',
+              'message': '服务器出错'
+            })
           })
       }
     }

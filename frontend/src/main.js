@@ -15,7 +15,8 @@ const UserVuexStore = new Vuex.Store({
   state: {
     UserName: '',
     Token: '',
-    Authenticated: null
+    Authenticated: null,
+    LastView: ''
   },
   mutations: {
     Authenticate (state, If) {
@@ -23,6 +24,9 @@ const UserVuexStore = new Vuex.Store({
     },
     ApplyToken (state, Token) {
       state.Token = Token
+    },
+    ChangeView (state, view) {
+      state.LastView = view
     }
   }
 })

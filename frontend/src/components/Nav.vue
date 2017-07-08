@@ -1,60 +1,66 @@
 <template>
-  <div id="app">
-    <!-- 头部导航 -->
-    <header class="header" :class="{ 'header-fixed' : headerFixed }">
-      <el-row>
-        <el-col :span="24">
-          <el-menu default-active="5" class="el-menu-demo" mode="horizontal" @select="">
-            <el-menu-item index="1">高级插件</el-menu-item>
-            <el-menu-item index="2">在线商城</el-menu-item>
-            <el-menu-item index="3">客户管理</el-menu-item>
-            <el-menu-item index="4">系统设置</el-menu-item>
-            <el-menu-item index="5">活动发布</el-menu-item>
-          </el-menu>
-        </el-col>
-      </el-row>
-    </header>
-    <div v-show="headerFixed" style="position: relative;height: 60px;width: 100%;"></div>
-<template>
-  <div>
-
-  </div>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Project name</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><el-button @click="BackSubmit()">返回</el-button></li>
+          <li><el-button @click="YearViewSubmit()">年</el-button></li>
+          <li><el-button @click="MonthViewSubmit()">月</el-button></li>
+          <li><el-button @click="DayViewSubmit()">日</el-button></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === false">
+          <li><router-link to="/profile">资料修改</router-link></li>
+          <li><router-link to="/logout">注销</router-link></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === true">
+          <li><router-link to="/login">登陆</router-link></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
-  import Vue from 'vue'
-  import Element from 'element-ui'
-  import 'element-ui/lib/theme-default/index.css'
-
-  Vue.use(Element)
-
   export default {
-    name: 'app',
-    data: function () {
+    name: 'Nav',
+    data () {
       return {
-        active: true,
-        headerFixed: true
+        LastView:
       }
-    },
-    created: function () {
-      this.$router.push('/activePublic')
     },
     methods: {
+      BackSubmit () {
 
-    },
-    watch: {
-      '$route': function (to, from) {
-        if (to.path === '/activePublic') {
-          this.active = true
-        } else if (to.path === '/activeManage') {
-          this.active = false
-        }
+      },
+      YearViewSubmit () {
+
+      },
+      MonthViewSubmit () {
+
+      },
+      DayViewSubmit () {
+
       }
-import calendar from '../../self_modules/vue-fullcalendar/src/fullCalendar.vue'
-export default {
-  name: 'hello',
-  data () {
-    return {
+    },
+    computed: {
+      Authenticate () {
+        return this.$store.state.Authenticated
+      },
+      GetUserName () {
+        return this.$store.state.UserName
+      },
+      GetToken () {
+        return this.$store.state.Token
+      }
     }
   }
 </script>

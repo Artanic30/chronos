@@ -9,7 +9,7 @@ import random
 
 alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
 
-class Token:
+class ChronosToken:
     def __init__(self,username,token=""):
         self.username = username
         self.token = token
@@ -61,7 +61,7 @@ def login(request):
         password = body['Password']
         user = authenticate(username=username, password=password)
         if user is not None:
-            token_object = Token(username=username)
+            token_object = ChronosToken(username=username)
             # TODO : token
             return JsonResponse({
                 "UserName": username,
@@ -81,7 +81,8 @@ def register(request):
         body = json.loads(request.body)
         username = body['Username']
         password = body['password']
-        token_object = Token(username=username)
+        token_object = ChronosToken(username=username)
+        User.objects.create(username=username,password=password)
         return JsonResponse({
             "message": "Success",
             "Token": token_object.generate(),

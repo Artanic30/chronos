@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-class Region(models.Model):
+class Place(models.Model):
     Region =  models.TextField(default=None)
     SundayVisitedTimes = models.IntegerField()
     SaturdayVisitedTimes = models.IntegerField()
@@ -37,7 +37,7 @@ class Event(models.Model):
     )
     Type = models.CharField(max_length=6, choices=type_choices, default=None)
     Content = models.TextField(default=None)
-    Region = models.OneToOneField(Region)
+    Region = models.OneToOneField(Place)
     Weather = models.OneToOne(Weather)
     StartDatetime = models.DatetimeField()
     EndDatetime =  models.DatetimeField()

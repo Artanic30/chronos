@@ -1,5 +1,6 @@
 <template>
   <div>
+    <full-calendar></full-calendar>
   </div>
 </template>
 
@@ -10,6 +11,9 @@ export default {
   data () {
     return {
     }
+  },
+  components: {
+    'full-calendar': calendar
   }
 }
 </script>

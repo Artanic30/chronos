@@ -19,7 +19,8 @@ const UserVuexStore = new Vuex.Store({
     Year: '',
     Month: '',
     Day: '',
-    LastView: ''
+    LastView: '',
+    NowView: ''
   },
   mutations: {
     Authenticate (state, If) {
@@ -28,13 +29,16 @@ const UserVuexStore = new Vuex.Store({
     ApplyToken (state, Token) {
       state.Token = Token
     },
-    ChangeView (state, view) {
+    ApplyLastView (state, view) {
       state.LastView = view
     },
     UpdateTime (state, Year, Month, Day) {
       state.Year = Year
       state.Month = Month
       state.Day = Day
+    },
+    ApplyNowView (state, view) {
+      state.NowView = view
     }
   }
 })

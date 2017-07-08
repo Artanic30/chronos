@@ -4,7 +4,7 @@ import Login from '@/components/Login'
 import Day from '@/pages/Day'
 import EventForm from '@/components/EventForm'
 import Calendar from '@/components/Calendar'
-
+import About from '@/components/About'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +28,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About
     }
   ]
 })

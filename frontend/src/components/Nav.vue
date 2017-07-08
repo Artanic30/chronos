@@ -8,20 +8,19 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Project name</a>
+        <a class="navbar-brand" href="#">Chronos</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><el-button @click="BackSubmit()">返回</el-button></li>
-          <li><el-button @click="YearViewSubmit()">年</el-button></li>
-          <li><el-button @click="MonthViewSubmit()">月</el-button></li>
-          <li><el-button @click="DayViewSubmit()">日</el-button></li>
+          <li><a @click="BackSubmit()">返回</a></li>
+          <li><a @click="MonthViewSubmit()">月</a></li>
+          <li><a @click="DayViewSubmit()">日</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" v-if="Authenticate === false">
           <li><router-link to="/profile">资料修改</router-link></li>
           <li><router-link to="/logout">注销</router-link></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === true">
+        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === true || Authenticate === null">
           <li><router-link to="/login">登陆</router-link></li>
         </ul>
       </div>
@@ -31,21 +30,32 @@
 
 <script>
   export default {
-    name: 'Nav',
     data () {
       return {
-        LastView:
+        LastView: ''
       }
     },
     methods: {
       BackSubmit () {
-
-      },
-      YearViewSubmit () {
-
+        var lastView = this.$store.state.LastView
+        if (lastView === '/login') {
+          this.$router.push({'path': lastView})
+        } else if (lastView === '/about') {
+          this.$router.push({'path': lastView})
+        } else if (lastView === '/register') {
+          this.$router.push({'path': lastView})
+        } else if (lastView === '/profile') {
+          this.$router.push({'path': lastView})
+        } else {
+          // todo:
+          console.log('hello...')
+        }
+        console.log(lastView)
       },
       MonthViewSubmit () {
-
+        var nowView = this.$store.state.NowView
+        this.$store.commit('ApplyLastView', nowView)
+        console.log(nowView)
       },
       DayViewSubmit () {
 

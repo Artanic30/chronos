@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="EventForm" :model="EventForm" label-position="left">
+  <el-form ref="EventForm" :model="EventForm">
     <el-form-item label="事件名称">
       <el-input v-model="EventForm.Name"></el-input>
     </el-form-item>

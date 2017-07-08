@@ -2,4 +2,8 @@ backend/chronos/app/.DS_Store
 backend/.DS_Store
 backend/chronos/.DS_Store
 .DS_Store
+<<<<<<< HEAD
+backend/chronos/app/api.json
+=======
 \.idea/
+>>>>>>> 00fe8277ce36957cfc7d08917f600eaedd92dae6

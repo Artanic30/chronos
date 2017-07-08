@@ -25,7 +25,10 @@ class Weather(models.Model):
     humidity = models.DecimalField()
     rain_intensity = models.DecimalField()
 
-
+class Token(models.Model):
+    token =  models.CharField(max_length=30,default=None)
+    userprofile = models.OneToOneField(UserProfile)
+    username = models.CharField(max_length=100,default=None)
 
 class Event(models.Model):
     type_choices= (
@@ -42,4 +45,5 @@ class Event(models.Model):
 
 class UserProfile(models.Model):
     user_object = models.OneToOneField(User)
-    
+    Age =  models.IntegerField()
+    Job = models.CharField(max_length=50,default=None)

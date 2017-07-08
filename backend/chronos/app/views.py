@@ -1,13 +1,57 @@
 from django.http import JsonResponse
 import json
 from django.contrib.auth.models import User
-from jpsp.shortcut import JPSPToken, JPSPTime
-from jpspapp.models import Weather, Region,
+from jpspapp.models import Weather, Region, Token
 from django.views.decorators.http import require_http_methods
 import datetime
 from django.contrib.auth import authenticate
+import random
 
-# Create your views here.
+alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
+
+class Token:
+    def __init__(self,username,token=""):
+        self.username = username
+        self.token = token
+        self.message = ""
+
+    def generate(self):
+        for i in range(length):
+            self.token += alphabet[random.randint(0, len(alphabet) - 1)]
+        try:
+            Token.objects.create(
+                Token=self.token,
+                User=User.objects.get(Username=self.username),
+                UserType=self.usertype
+                # start_time=datetime.datetime.now(),
+                # TODO:  datetime in python and SQL ??
+                # end_time =datetime.datetime.now(),
+            )
+            self.message = 'Success'
+            return self.token
+        except:
+            self.message = 'error'
+
+    def remove(self):
+        try:
+            token = Token.objects.get(Username=self.username)
+            if token:
+                token.delete()
+                self.message = 'Success'
+                return self.message
+        except:
+            self.message = 'Error'
+            return self.message
+
+    def authenticate(self):
+        token = Token.objects.get(Username=self.username).Token
+        if token != None:
+            if self.token == token:
+                self.message = 'Success'
+                return self.message
+            else:
+                self.message = 'Error'
+                return self.message
 
 @require_http_methods(['POST'])
 def login(request):

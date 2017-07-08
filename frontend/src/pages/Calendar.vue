@@ -1,6 +1,6 @@
 <template>
   <div>
-    <full-calendar :events="Events"></full-calendar>
+    <full-calendar></full-calendar>
   </div>
 </template>
 
@@ -10,13 +10,6 @@ export default {
   name: 'hello',
   data () {
     return {
-      Events: [
-        {
-          title: 'shit',
-          start: '2017-07-02',
-          end: '2017-07-03'
-        }
-      ]
     }
   },
   components: {

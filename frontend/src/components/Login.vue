@@ -1,5 +1,8 @@
 <template>
-  <el-form>
+  <div class="container">
+    <h1>Welcome to Chronos!</h1>
+    <br>
+  <el-form ref="LoginForm" :model="LoginForm">
     <el-form-item label="用户名">
       <el-input v-model="LoginForm.Username"></el-input>
     </el-form-item>
@@ -10,6 +13,7 @@
       <el-button type="small" @click="LoginSubmit">登陆</el-button>
     </el-form-item>
   </el-form>
+    </div>
 </template>
 <script>
   import axios from 'axios'
@@ -57,5 +61,10 @@
     }
   }
 </script>
-<style>
+<style scoped>
+  .container{
+    padding-top: 50px;
+    padding-left: 400px;
+    padding-right: 400px;
+  }
 </style>

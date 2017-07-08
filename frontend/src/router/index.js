@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Test from '@/components/EventForm'
+// import Test from '@/components/EventForm'
 import Calendar from '@/pages/Calendar'
 import Login from '@/components/Login'
+import Day from '@/pages/Day'
 
 Vue.use(Router)
 
@@ -16,7 +17,7 @@ export default new Router({
     {
       path: '/day',
       name: 'Day',
-      component: Calendar
+      component: Day
     },
     {
       path: '/login',

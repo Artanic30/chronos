@@ -10,8 +10,7 @@
       <el-date-picker type="datetime" v-model="EventForm.EndDatetime"></el-date-picker>
     </el-form-item>
     <el-form-item label="地点">
-      <el-autocomplete v-model="EventForm.Place" :fetch-suggestions="querySearchAsync" placeholder="请输入地点"
-                       @select="handleSelect">
+      <el-autocomplete v-model="EventForm.Place" :fetch-suggestions="querySearchAsync" placeholder="请输入地点">
       </el-autocomplete>
     </el-form-item>
     <el-form-item label="事件内容">
@@ -99,20 +98,6 @@
             })
           }
         }.bind(this))
-      }
-    },
-    computed: {
-      Authenticate () {
-        return this.$store.state.Authenticated
-      },
-      GetUserName () {
-        return this.$store.state.UserName
-      },
-      GetToken () {
-        return this.$store.state.Token
-      },
-      GetUserId () {
-        return this.$store.state.UserId
       }
     }
   }

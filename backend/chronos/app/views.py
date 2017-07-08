@@ -133,6 +133,7 @@ def getPlaces(request):
 def addEvent(request):
     try:
         body = json.loads(request.body)
+        name = body['Name']
         type = body['Type']
         place = body['Place']
         content = body['Content']
@@ -140,6 +141,8 @@ def addEvent(request):
         end_datetime = body['EndDatetime']
         emotion = body['Emotion']
         # weather uses api!
+        # todo: place one to one field
+        Event.objects.create(Name=name,Type=type,Place=place,Content=content,StartDatetime=start_datetime,EndDatetime=end_datetime,Emotion=emotion)
         return JsonResponse({
             "message":"Success",
             "Access-Control-Allow-Origin": '*'
@@ -166,6 +169,11 @@ def removeEvent(request):
             "message":"Error",
             "Access-Control-Allow-Origin": '*'
         })
+
+
+@require_http_methods(['POST'])
+def updateEvent(request):
+
 
 @require_http_methods(['POST'])
 def predictEvent(request):
@@ -222,11 +230,21 @@ def getEvent(request):
         year = body['Year']
         # todo: event_object
         event_object = Event.objects.get(StartDatetime=datetime.datetime(year,month,day))
-        queryset = None
+        data = {
+            'pk': event_object.pk,
+            'Name': event_object.Name,
+            'Type': event_object.Type,
+            'Place': event_object.Place,
+            'Content': event_object.Content,
+            'Weather': event_object.Weather,
+            'StartDatetime': event_object.StartDatetime,
+            'EndDatetime': event_object.EndDatetime,
+            'Emotion': event_object
+        }
         return JsonResponse({
             "message": 'Success',
             "Access-Control-Allow-Origin": '*',
-            "data": json.dumps(queryset)
+            "data": json.dumps(data)
         },safe=False)
     except:
         return JsonResponse({

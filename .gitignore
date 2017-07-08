@@ -3,3 +3,4 @@ backend/chronos/app/.DS_Store
 backend/.DS_Store
 backend/chronos/.DS_Store
 .DS_Store
+backend/chronos/app/api.json

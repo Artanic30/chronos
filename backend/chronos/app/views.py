@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 import json
 from django.contrib.auth.models import User
-from jpspapp.models import Weather, Region, Token
+from jpspapp.models import Weather, Region, Token, Event
 from django.views.decorators.http import require_http_methods
 import datetime
 from django.contrib.auth import authenticate
@@ -9,8 +9,9 @@ import random
 
 alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
 
+
 class Token:
-    def __init__(self,username,token=""):
+    def __init__(self, username, token=""):
         self.username = username
         self.token = token
         self.message = ""
@@ -53,17 +54,18 @@ class Token:
                 self.message = 'Error'
                 return self.message
 
+
 @require_http_methods(['POST'])
 def login(request):
     try:
         body = json.loads(request.body)
         username = body['Username']
         password = body['Password']
+        user = authenticate(username=username, password=password)
         if user is not None:
-            token_object = Token(username=userid, usertype=usertype)
+            token_object = Token(username=username)
             # TODO : token
             return JsonResponse({
-                "UserName":
                 "message": "User Authenticated",
                 "Token": token_object.generate(),
                 "Access-Control-Allow-Origin": '*'
@@ -74,15 +76,17 @@ def login(request):
             "Access-Control-Allow-Origin": '*',
         })
 
+
 @require_http_methods(['POST'])
 def register(request):
     try:
         body = json.loads(request.body)
         username = body['Username']
-        password = body['password']
+        token_object = Token(username=username)
+        token = token_object.generate()
         return JsonResponse({
+            "token": token,
             "message": "Success",
-            "Token": token_object.generate(),
             "Access-Control-Allow-Origin": '*'
         })
     except:
@@ -91,9 +95,24 @@ def register(request):
             "Access-Control-Allow-Origin": '*',
         })
 
+
 @require_http_methods(['POST'])
 def logout(request):
-    pass
+    try:
+        body = json.loads(request.body)
+        username = body['Username']
+        token = body['Token']
+        token_object = Token.objects.get(username=username)
+        token_object.delete()
+        return JsonResponse({
+            'message': 'Success',
+            "Access-Control-Allow-Origin": '*',
+        })
+    except:
+        return JsonResponse({
+            'message': 'Error',
+            "Access-Control-Allow-Origin": '*',
+        })
 
 @require_http_methods(['POST'])
 def addEvent(request):
@@ -107,14 +126,15 @@ def addEvent(request):
         emotion = body['Emotion']
         # weather uses api!
         return JsonResponse({
-            "message":"Success",
+            "message": "Success",
             "Access-Control-Allow-Origin": '*'
         })
     except:
         return JsonResponse({
-            "message":"Error",
+            "message": "Error",
             "Access-Control-Allow-Origin": '*'
         })
+
 
 @require_http_methods(['POST'])
 def removeEvent(request):
@@ -124,14 +144,15 @@ def removeEvent(request):
         event_object = Event.objects.filter(pk=id)
         event_object.delete()
         return JsonResponse({
-            "message":"Success",
+            "message": "Success",
             "Access-Control-Allow-Origin": '*'
         })
     except:
         return JsonResponse({
-            "message":"Error",
+            "message": "Error",
             "Access-Control-Allow-Origin": '*'
         })
+
 
 @require_http_methods(['POST'])
 def predictEvent(request):

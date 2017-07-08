@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import calendar from '../../self_modules/vue-fullcalendar/src/fullCalendar.vue'
 export default {
   name: 'hello',
   data () {

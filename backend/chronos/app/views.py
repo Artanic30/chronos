@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 import json
 from django.contrib.auth.models import User
-from jpspapp.models import Weather, Region, Token
+from .models import Weather, Place, Token, Event, UserProfile
 from django.views.decorators.http import require_http_methods
 import datetime
 from django.contrib.auth import authenticate
@@ -16,7 +16,7 @@ class Token:
         self.message = ""
 
     def generate(self):
-        for i in range(length):
+        for i in range(0,30):
             self.token += alphabet[random.randint(0, len(alphabet) - 1)]
         try:
             Token.objects.create(
@@ -59,12 +59,13 @@ def login(request):
         body = json.loads(request.body)
         username = body['Username']
         password = body['Password']
+        user = authenticate(username=username, password=password)
         if user is not None:
-            token_object = Token(username=userid, usertype=usertype)
+            token_object = Token(username=username)
             # TODO : token
             return JsonResponse({
-                "UserName":
-                "message": "User Authenticated",
+                "UserName": username,
+                "message": 'User Authenticated',
                 "Token": token_object.generate(),
                 "Access-Control-Allow-Origin": '*'
             })
@@ -80,6 +81,7 @@ def register(request):
         body = json.loads(request.body)
         username = body['Username']
         password = body['password']
+        token_object = Token(username=username)
         return JsonResponse({
             "message": "Success",
             "Token": token_object.generate(),
@@ -94,6 +96,38 @@ def register(request):
 @require_http_methods(['POST'])
 def logout(request):
     pass
+
+@require_http_methods(['POST'])
+def getPlaces(request):
+    try:
+        body = json.loads(request)
+        token = body['Token']
+        place = body['Place']
+        day = body['day']
+        queryset = []
+        queryset_object = Place.objects.filter(Region=place)
+        for data in queryset_object:
+            queryset.append({
+                'Region': data.Region,
+                'SundayVisitedTimes': data.SundayVisitedTimes,
+                'SaturdayVisitedTimes': data.SaturdayVisitedTimes,
+                'MondayVisitedTimes' : data.MondayVisitedTimes,
+                'TuesdayVisitedTimes': data.TuesdayVisitedTimes,
+                'WednesdayVisitedTimes': data.WednesdayVisitedTimes,
+                'ThursdayVisitedTimes': data.ThursdayVisitedTimes,
+                'FridayVisitedTimes': data.FridayVisitedTimes
+            })
+        return JsonResponse({
+            "message": "Success",
+            "Access-Control-Allow-Origin": '*',
+            "data": json.dumps(queryset)
+        },safe=False)
+    except:
+        return JsonResponse({
+            "message": "Error",
+            "Access-Control-Allow-Origin": '*'
+        })
+
 
 @require_http_methods(['POST'])
 def addEvent(request):
@@ -136,3 +170,66 @@ def removeEvent(request):
 @require_http_methods(['POST'])
 def predictEvent(request):
     pass
+
+
+@require_http_methods(['POST'])
+def profileGet(request):
+    try:
+        body = json.loads(request.body)
+        username = body['Username']
+        userprofile_object = UserProfile.objects.get(username=username)
+        return JsonResponse({
+            "message": "Success",
+            "Access-Control-Allow-Origin": '*',
+            'data':{
+                'Nickname': userprofile_object.Nickname
+                'Id': userprofile_object.pk
+            }
+        })
+    except:
+        return JsonResponse({
+            "message": "Error",
+            "Access-Control-Allow-Origin": '*'
+        })
+
+
+@require_http_methods(['POST'])
+def profileEdit(request):
+    try:
+        body = json.loads(request.body)
+        pk = body['Id']
+        nickname = body['Nickname']
+        userprofile_object = UserProfile.objects.get(pk=pk)
+        userprofile_object.Nickname = nickname
+        userprofile_object.save()
+        return JsonResponse({
+            "message": "Success",
+            "Access-Control-Allow-Origin": '*'
+        })
+    except:
+        return JsonResponse({
+            "message": "Error",
+            "Access-Control-Allow-Origin": '*'
+        })
+
+
+@require_http_methods(['POST'])
+def getEvent(request):
+    try:
+        body = json.loads(request.body)
+        month = body['Month']
+        day = body['Day']
+        year = body['Year']
+        # todo: event_object
+        event_object = Event.objects.get(StartDatetime=datetime.datetime(year,month,day))
+        queryset = None
+        return JsonResponse({
+            "message": 'Success',
+            "Access-Control-Allow-Origin": '*',
+            "data": json.dumps(queryset)
+        },safe=False)
+    except:
+        return JsonResponse({
+            "message": "Error",
+            "Access-Control-Allow-Origin": '*'
+        })

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <day></day>
-    <router-link :to="{ name: 'Day', params:{ year:'2017',month:'7',day:'8'}}">shit</router-link>
+    <day :year="year" :month="month" :day="day"></day>
   </div>
 </template>
 
@@ -10,6 +9,9 @@ import Day from '../components/Day.vue'
 export default {
   data () {
     return {
+      year: '2015',
+      month: '23',
+      day: '23'
     }
   },
   components: {

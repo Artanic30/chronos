@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>{{ Year }}年</h1>
-    <h1>{{ Month }}月</h1>
-    <h1>{{ Day }}日</h1>
+    <h1>{{ GetYear }}年</h1>
+    <h1>{{ GetMonth }}月</h1>
+    <h1>{{ GetDay }}日</h1>
     <div v-for="Hour in HourList">
       <hour :Hour="Hour"></hour>
     </div>
@@ -13,24 +13,25 @@
 import axios from 'axios'
 import Hour from './Hour.vue'
 export default {
+  props: {
+    year: {},
+    month: {},
+    day: {}
+  },
   data () {
     return {
       HourList: [
         {
-          time: 0,
           events: [
             {
               title: 'Take a bath'
             }
           ]
-        },
-        {
-          time: 1
         }
       ],
-      Year: this.$route.params.year,
-      Month: this.$route.params.month,
-      Day: this.$route.params.day
+      Year: this.GetYear,
+      Month: this.GetMonth,
+      Day: this.GetDay
     }
   },
   components: {
@@ -45,6 +46,15 @@ export default {
     },
     GetToken () {
       return this.$store.state.Token
+    },
+    GetYear () {
+      return this.$props.year
+    },
+    GetMonth () {
+      return this.$props.month
+    },
+    GetDay () {
+      return this.$props.day
     }
   },
   mounted: function () {
@@ -55,16 +65,18 @@ export default {
       data: JSON.stringify({
         Token: this.GetToken,
         UserName: this.GetUserName,
-        Year: this.Year,
-        Month: this.Month,
-        Day: this.Day
+        Year: this.GetYear,
+        Month: this.GetMonth,
+        Day: this.GetDay
       })
     }).then(function (response) {
       if (response.data.message === 'success') {
         this.HourList = JSON.parse(response.data.data)
-        console.log('success')
       } else {
-        console.log('error')
+        this.$notify.error({
+          'title': '错误',
+          'message': '获取数据失败'
+        })
       }
     }.bind(this))
   }

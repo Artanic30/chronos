@@ -17,7 +17,6 @@
       <el-input type="textarea" v-model="EventForm.Content"></el-input>
     </el-form-item>
     <el-form-item label="心情" v-if=" event_type === 'Past'">
-      <!--TODO: emotion component-->
       <el-rate v-model="EventForm.Emotion"></el-rate>
     </el-form-item>
     <el-form-item label="">
@@ -31,9 +30,7 @@
     props: {
       event_type: {
         default: 'Past'
-      },
-      start_datetime: {},
-      end_datetime: {}
+      }
     },
     data () {
       return {
@@ -43,7 +40,7 @@
           Content: '',
           StartDatetime: this.GetStartDatetime,
           EndDatetime: this.GetEndDatetime,
-          Emotion: 0,
+          Emotion: 0.0,
           Place: ''
         },
         PlaceChoices: [
@@ -70,7 +67,7 @@
       EventSubmit () {
         axios({
           method: 'POST',
-          url: '',
+          url: 'http://127.0.0.1:8000/api/event/add',
           data: JSON.stringify({
             Name: this.EventForm.Name,
             Type: this.EventForm.Type,
@@ -119,12 +116,6 @@
       },
       GetType () {
         return this.$props.event_type
-      },
-      GetStartDatetime () {
-        return this.$props.start_datetime
-      },
-      GetEndDatetime () {
-        return this.$props.end_datetime
       }
     }
   }

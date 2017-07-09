@@ -32,6 +32,7 @@
         leftWidth: 24,
         rightWidth: 10,
         state: 'browse',
+        leftOffset: 2,
         week: [
           '星期日',
           '星期一',
@@ -61,10 +62,12 @@
           this.$data.state = 'browse'
           this.$data.leftWidth = 24
           this.$data.rightWidth = 0
+          this.$data.leftOffset = 2
         } else if (this.$data.state === 'browse') {
           this.$data.state = 'edit'
           this.$data.leftWidth = 14
           this.$data.rightWidth = 10
+          this.$data.leftOffset = 0
         }
       },
       nextMonth () {

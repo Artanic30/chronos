@@ -16,11 +16,11 @@
           <li><a @click="MonthViewSubmit()">{{ Month+1 }}月</a></li>
           <li><a @click="DayViewSubmit()">{{ Day }}日</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === false">
+        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === true">
           <li><router-link to="/profile">资料修改</router-link></li>
           <li><router-link to="/logout">注销</router-link></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === true || Authenticate === null">
+        <ul class="nav navbar-nav navbar-right" v-if="Authenticate === false || Authenticate === null">
           <li><router-link to="/login">登陆</router-link></li>
         </ul>
       </div>

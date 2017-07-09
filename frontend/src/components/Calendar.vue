@@ -1,5 +1,8 @@
 <template>
   <div>
+    <el-button type="primary" @click="prevMonth">上个月</el-button>
+    <el-button type="primary" @click="nextMonth">下个月</el-button>
+    <router-link to="/day/2017/7/9">日视图</router-link>
     <el-row :gutter="20" class="tac">
       <el-col :span="leftWidth">
         <el-row>
@@ -15,9 +18,6 @@
         <event-form></event-form>
       </el-col>
     </el-row>
-    <el-button type="primary" @click="prevMonth">上个月</el-button>
-    <el-button type="primary" @click="nextMonth">下个月</el-button>
-    <h1>{{ typeof Day }}</h1>
   </div>
 </template>
 

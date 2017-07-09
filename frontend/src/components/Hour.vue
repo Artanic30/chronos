@@ -1,8 +1,8 @@
 <template>
   <div class="hour">
-    <h1>{{ Hour.time }}</h1>
+    <p>{{ Hour.time }}</p>
     <div v-for="event in Hour.events">
-      <h2>{{ event.title }}</h2>
+      <h3>{{ event.title }}</h3>
     </div>
   </div>
 </template>
@@ -23,6 +23,5 @@ export default {
 <style scoped>
   .hour{
     border:1px solid #000;
-    padding: 5px;
   }
 </style>

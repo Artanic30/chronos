@@ -1,18 +1,13 @@
 <template>
   <div>
-
   </div>
 </template>
 
 <script>
-import calendar from '../components/Calendar.vue'
 export default {
   data () {
     return {
     }
-  },
-  components: {
-    'full-calendar': calendar
   }
 }
 </script>

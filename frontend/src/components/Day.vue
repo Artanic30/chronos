@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h1>{{ GetYear }}年</h1>
-    <h1>{{ GetMonth }}月</h1>
-    <h1>{{ GetDay }}日</h1>
     <div v-for="Hour in HourList">
       <hour :Hour="Hour"></hour>
     </div>
@@ -22,9 +19,194 @@ export default {
     return {
       HourList: [
         {
+          time: 0,
           events: [
             {
-              title: 'Take a bath'
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 1,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 2,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 3,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 4,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 5,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 6,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 7,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 8,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 9,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 10,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 11,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 12,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 13,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 14,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 15,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 16,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 17,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 18,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 19,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 20,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 21,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 22,
+          events: [
+            {
+              title: 'Code!'
+            }
+          ]
+        },
+        {
+          time: 23,
+          events: [
+            {
+              title: 'Code!'
             }
           ]
         }

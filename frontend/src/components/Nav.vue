@@ -1,6 +1,5 @@
 <template>
   <nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
@@ -13,8 +12,9 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a @click="BackSubmit()">返回</a></li>
-          <li><a @click="MonthViewSubmit()">月</a></li>
-          <li><a @click="DayViewSubmit()">日</a></li>
+          <li><a @click="">{{ Year }}年</a></li>
+          <li><a @click="MonthViewSubmit()">{{ Month+1 }}月</a></li>
+          <li><a @click="DayViewSubmit()">{{ Day }}日</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right" v-if="Authenticate === false">
           <li><router-link to="/profile">资料修改</router-link></li>
@@ -24,7 +24,6 @@
           <li><router-link to="/login">登陆</router-link></li>
         </ul>
       </div>
-    </div>
   </nav>
 </template>
 
@@ -62,14 +61,14 @@
       }
     },
     computed: {
-      Authenticate () {
-        return this.$store.state.Authenticated
+      Year () {
+        return this.$store.state.Year
       },
-      GetUserName () {
-        return this.$store.state.UserName
+      Month () {
+        return this.$store.state.Month
       },
-      GetToken () {
-        return this.$store.state.Token
+      Day () {
+        return this.$store.state.Day
       }
     }
   }

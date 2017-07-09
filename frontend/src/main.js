@@ -16,9 +16,9 @@ const UserVuexStore = new Vuex.Store({
     UserName: '',
     Token: '',
     Authenticated: null,
-    Year: '',
-    Month: '',
-    Day: '',
+    Year: new Date().getYear() + 1900,
+    Month: new Date().getMonth(),
+    Day: new Date().getDate(),
     LastView: '',
     NowView: ''
   },
@@ -32,9 +32,13 @@ const UserVuexStore = new Vuex.Store({
     ApplyLastView (state, view) {
       state.LastView = view
     },
-    UpdateTime (state, Year, Month, Day) {
+    UpdateYear (state, Year) {
       state.Year = Year
+    },
+    UpdateMonth (state, Month) {
       state.Month = Month
+    },
+    UpdateDay (state, Day) {
       state.Day = Day
     },
     ApplyNowView (state, view) {

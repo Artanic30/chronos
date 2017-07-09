@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <ChronosNav></ChronosNav>
     <router-view></router-view>
   </div>

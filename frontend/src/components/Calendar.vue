@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <div>
     <el-row :gutter="20" class="tac">
-      <el-col :span="leftWidth" :offset="leftOffset">
-        <el-row class="main">
+      <el-col :span="leftWidth">
+        <el-row>
           <el-col :span="3" v-for="index in week" class="card" :key="index">{{ index }}</el-col>
         </el-row>
-        <el-row class="main" v-for="weekIndex in month" :key="weekIndex">
+        <el-row v-for="weekIndex in MonthList" :key="weekIndex">
           <el-col :span="3" v-for="dayIndex in weekIndex" :key="dayIndex">
             <div class="card" @click="editOrBrowse">{{ dayIndex }}</div>
           </el-col>
@@ -15,6 +15,9 @@
         <event-form></event-form>
       </el-col>
     </el-row>
+    <el-button type="primary" @click="prevMonth">上个月</el-button>
+    <el-button type="primary" @click="nextMonth">下个月</el-button>
+    <h1>{{ typeof Day }}</h1>
   </div>
 </template>
 
@@ -49,8 +52,7 @@
           'Sat'
         ],
         month: [
-          ['', '1', '2', '3', '4', '5', '6'],
-          ['7', '8']
+          31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
         ]
       }
     },
@@ -67,6 +69,59 @@
           this.$data.rightWidth = 10
           this.$data.leftOffset = 0
         }
+      },
+      nextMonth () {
+        if (this.Month === 11) {
+          this.$store.commit('UpdateYear', this.Year + 1)
+          this.$store.commit('UpdateMonth', 0)
+        } else {
+          this.$store.commit('UpdateMonth', this.Month + 1)
+        }
+      },
+      prevMonth () {
+        if (this.Month === 0) {
+          this.$store.commit('UpdateYear', this.Year - 1)
+          this.$store.commit('UpdateMonth', 11)
+        } else {
+          this.$store.commit('UpdateMonth', this.Month - 1)
+        }
+      }
+    },
+    computed: {
+      Year () {
+        return this.$store.state.Year
+      },
+      Month () {
+        return this.$store.state.Month
+      },
+      Day () {
+        return this.$store.state.Day
+      },
+      MonthList () {
+        var tmp = []
+        var obj = []
+        var num = this.month[this.Month]
+        var d = new Date()
+        d.setFullYear(this.Year, this.Month, 1)
+        for (var i = 0; i < d.getDay(); i++) {
+          tmp.push('')
+          if (tmp.length === 7) {
+            obj.push(tmp)
+            tmp = []
+          }
+        }
+        for (i = 1; i <= num; i++) {
+          tmp.push(i)
+          if (tmp.length === 7) {
+            obj.push(tmp)
+            tmp = []
+          }
+        }
+        if (tmp.length !== 0) {
+          obj.push(tmp)
+        }
+        tmp = []
+        return obj
       }
     }
   }
@@ -75,7 +130,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .card {
-    background-color: #72f1ff;
+    background-color: #ff9547;
     border: 1px solid #fff;
     height: 150px;
   }

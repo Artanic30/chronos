@@ -15,7 +15,7 @@ export default new Router({
       component: Calendar
     },
     {
-      path: '/add',
+      path: '/event',
       name: 'EventForm',
       component: EventForm
     },

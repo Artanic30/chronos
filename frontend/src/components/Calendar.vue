@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-row :gutter="20" class="tac">
-      <el-col :span="leftWidth" :offset="2">
+      <el-col :span="leftWidth" :offset="leftOffset">
         <el-row class="main">
           <el-col :span="3" v-for="index in week" class="card" :key="index">{{ index }}</el-col>
         </el-row>
@@ -29,6 +29,7 @@
         leftWidth: 24,
         rightWidth: 10,
         state: 'browse',
+        leftOffset: 2,
         week: [
           '星期日',
           '星期一',
@@ -59,10 +60,12 @@
           this.$data.state = 'browse'
           this.$data.leftWidth = 24
           this.$data.rightWidth = 0
+          this.$data.leftOffset = 2
         } else if (this.$data.state === 'browse') {
           this.$data.state = 'edit'
           this.$data.leftWidth = 14
           this.$data.rightWidth = 10
+          this.$data.leftOffset = 0
         }
       }
     }
